@@ -166,15 +166,17 @@ class QuillEngXliterator(object):
         else:
             (engPronunciation,count) = self.lit2engEngine.literalToUnicode(list(literal))
             engPronunciationStr = ' '.join(engPronunciation)
-    
+            
             for (cIndex,c) in enumerate(literal):
-                if engPronunciation[cIndex] == '':
+                if (cIndex<len(engPronunciation) and engPronunciation[cIndex] == ''):
                     engPronunciation[cIndex] = '#'
-                engPronunciation[cIndex] = engPronunciation[cIndex].replace(' ','_')
+                if cIndex<len(engPronunciation):
+                    engPronunciation[cIndex] = engPronunciation[cIndex].replace(' ','_')
     
             indPronounceInput = [] 
             for (cIndex,c) in enumerate(literal):
-                indPronounceInput.append('%s,%s'%(engPronunciation[cIndex],c))
+                if cIndex<len(engPronunciation):
+                    indPronounceInput.append('%s,%s'%(engPronunciation[cIndex],c))
                 
             (indPronunciation,count) = self.eng2indEngine.literalToUnicode(indPronounceInput)
                 

@@ -204,6 +204,7 @@ def isDictWord(lang, word):
 def init():
     """ Load the dump files into memory """
     for i in config.langMap:
+        print i;
         try:
             #f = codecs.open("dump/" + i + "_map.js", "r", "utf-8")
             #loadedMaps[i] = f.read()
